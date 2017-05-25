@@ -1,3 +1,4 @@
+//@author: Matt Kataryniak
 #include <SFML\graphics.hpp>
 #include <stdlib.h>
 #include <vector>
@@ -12,6 +13,7 @@ int main(int argc, char ** argv)
 	circle.setFillColor(sf::Color::Green);
 	circle.setPosition(30, 50);
 
+	//seeds the random number based on the current system time
 	srand(time(NULL));
 	//std::vector<sf::CircleShape*> circleArr;
 	//sf::CircleShape *circleArr[10];
@@ -19,6 +21,7 @@ int main(int argc, char ** argv)
 	for (int i=0; i<10; i++)
 	{
 		/*
+		//My ugly pointer shit
 		circleArr[i] = new sf::CircleShape(200);
 		circleArr[i]->setRadius((float)(rand() % 101));
 		sf::Color randomColor(rand() % 256, rand() % 256, rand() % 256);
@@ -61,8 +64,3 @@ int main(int argc, char ** argv)
 
 	return 0;
 }
-
-/*
-Stuff you do not do in C++ that C requires:
-	
-*/
