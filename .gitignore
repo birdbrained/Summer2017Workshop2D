@@ -1,0 +1,5 @@
+/[Dd]ebug/
+/SummerWorkshop2D/Debug/
+*.sdf
+*.dll
+*.opensdf
