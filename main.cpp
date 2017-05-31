@@ -4,6 +4,48 @@
 #include <vector>
 #include <time.h>
 
+/**
+ * @brief The game class
+ */
+class Game
+{
+	sf::RenderWindow *w; /**< The render window */
+};
+
+
+/**
+ * @brief This takes input and that's about it
+ * @return NULL
+ */
+void Input()
+{
+	sf::Event myEvent;
+}
+
+/**
+ * @brief This updates the world
+ * @return NULL
+ */
+void Update()
+{
+
+}
+
+/**
+ * @brief This draws shit
+ * @return NULL
+ */
+void DrawShit()
+{
+
+}
+
+/**
+ * @brief The the heart of operations
+ * @param argc Count of arguments
+ * @param argv Array of character arguments
+ * @return 0 if good, 1 if error
+ */
 int main(int argc, char ** argv)
 {
 	//create the actual window
@@ -42,6 +84,14 @@ int main(int argc, char ** argv)
 		{
 			switch (myEvent.type)
 			{
+			case sf::Event::KeyPressed:
+				if (myEvent.key.code == sf::Keyboard::F)
+				{
+					printf("F was pressed, also, fugg' off.\n");
+					//1. When you hold down a key, it is considered pressed until you release it
+					//2. 1st half second you press and hold a key, it doesn't count (STICKY KEYSSS!!!!)
+				}
+				break;
 			case sf::Event::Closed:
 				window.close();
 				break;
