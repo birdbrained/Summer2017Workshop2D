@@ -1,0 +1,11 @@
+/*
+Notes
+===========================
+5/31/2017
+---------------------------
+RAII: A way of looking how software should be designed
+If you don't follow it and look for a job, you could piss people off
+Will be expected to know the rules and conform to them
+
+SFML requires that if you want to use debug mode, you need to use the debug libraries
+*/

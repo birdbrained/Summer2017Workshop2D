@@ -76,9 +76,18 @@ int main(int argc, char ** argv)
 		circleArr[i].setPosition((float)(rand() % 600), (float)(rand() % 300));
 	}
 
+
+	// Loading assets
+	sf::Texture texture;
+	sf::IntRect rectSource(0, 0, 128, 128);
+	texture.loadFromFile("Sprites/icon.png", rectSource);
+	sf::Sprite sprite(texture);
+
 	//the game loop
 	while (window.isOpen())
 	{
+		// ***DO NOT LOAD ASSETS IN THE WHILE LOOP!!!!!!!!!***
+
 		sf::Event myEvent; //delcare an event
 		if (window.pollEvent(myEvent)) //poll to see if an event happened, and store it in the variable
 		{
@@ -108,6 +117,7 @@ int main(int argc, char ** argv)
 			}*/
 			for (sf::CircleShape c : circleArr)
 				window.draw(c);
+			window.draw(sprite);
 			window.display();		//shows the fucking buffer
 		}
 	}
