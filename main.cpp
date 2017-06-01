@@ -4,6 +4,8 @@
 #include <vector>
 #include <time.h>
 
+#define SECONDS_PER_FRAME 16
+
 /**
  * @brief The game class
  */
@@ -78,14 +80,17 @@ int main(int argc, char ** argv)
 
 
 	// Loading assets
+	sf::Clock clock;
 	sf::Texture texture;
-	sf::IntRect rectSource(0, 0, 128, 128); //left, top, width, height
-	texture.loadFromFile("Sprites/icon.png");
+	sf::IntRect rectSource(0, 0, 46, 46); //left, top, width, height
+	texture.loadFromFile("Sprites/idle.png");
 	sf::Sprite sprite(texture);
 	//sprite.setTextureRect(rectSource);
 	
-	int x, y;
-	x = y = 0;
+	//int x, y;
+	int frame = 0;
+	int frameTimer = 100;
+	//x = y = 0;
 
 	//the game loop
 	while (window.isOpen())
@@ -93,12 +98,12 @@ int main(int argc, char ** argv)
 		// ***DO NOT LOAD ASSETS IN THE WHILE LOOP!!!!!!!!!***
 
 		sf::Event myEvent; //delcare an event
-		x = (x + 1) % 128;
-		y = (y + 1) % 128;
-		rectSource.left = x;
-		rectSource.top = y;
-		sprite.setTextureRect(rectSource);
-		sprite.setPosition(sf::Vector2f(x, y));
+		//x = (x + 1) % 128;
+		//y = (y + 1) % 128;
+		//rectSource.left = x;
+		//rectSource.top = y;
+		//sprite.setTextureRect(rectSource);
+		//sprite.setPosition(sf::Vector2f(x, y));
 
 		if (window.pollEvent(myEvent)) //poll to see if an event happened, and store it in the variable
 		{
@@ -131,6 +136,22 @@ int main(int argc, char ** argv)
 			window.draw(c);
 		window.draw(sprite);
 		window.display();		//shows the fucking buffer
+
+		//Clock shit, pretty much a deltaTime
+		if (clock.getElapsedTime().asMilliseconds() < SECONDS_PER_FRAME)
+		{
+			sf::sleep(sf::milliseconds(SECONDS_PER_FRAME - clock.getElapsedTime().asMilliseconds()));
+		}
+
+		frameTimer -= clock.getElapsedTime().asMilliseconds();
+		if (frameTimer <= 0)
+		{
+			frame = (frame + 1) % 11;
+			frameTimer = 100;
+		}
+		rectSource.left = frame * 46;
+		sprite.setTextureRect(rectSource);
+		clock.restart();
 	}
 
 	return 0;
