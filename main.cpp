@@ -79,9 +79,13 @@ int main(int argc, char ** argv)
 
 	// Loading assets
 	sf::Texture texture;
-	sf::IntRect rectSource(0, 0, 128, 128);
-	texture.loadFromFile("Sprites/icon.png", rectSource);
+	sf::IntRect rectSource(0, 0, 128, 128); //left, top, width, height
+	texture.loadFromFile("Sprites/icon.png");
 	sf::Sprite sprite(texture);
+	//sprite.setTextureRect(rectSource);
+	
+	int x, y;
+	x = y = 0;
 
 	//the game loop
 	while (window.isOpen())
@@ -89,6 +93,13 @@ int main(int argc, char ** argv)
 		// ***DO NOT LOAD ASSETS IN THE WHILE LOOP!!!!!!!!!***
 
 		sf::Event myEvent; //delcare an event
+		x = (x + 1) % 128;
+		y = (y + 1) % 128;
+		rectSource.left = x;
+		rectSource.top = y;
+		sprite.setTextureRect(rectSource);
+		sprite.setPosition(sf::Vector2f(x, y));
+
 		if (window.pollEvent(myEvent)) //poll to see if an event happened, and store it in the variable
 		{
 			switch (myEvent.type)
@@ -107,19 +118,19 @@ int main(int argc, char ** argv)
 			default:
 				break;
 			}
-
-			//DRAW SHIT!!
-			window.clear();			//clears the buffer
-			window.draw(circle);	//puts object on the buffer
-			/*for (auto& obj : circleArr)
-			{
-				window.draw(obj);
-			}*/
-			for (sf::CircleShape c : circleArr)
-				window.draw(c);
-			window.draw(sprite);
-			window.display();		//shows the fucking buffer
 		}
+
+		//DRAW SHIT!!
+		window.clear();			//clears the buffer
+		window.draw(circle);	//puts object on the buffer
+		/*for (auto& obj : circleArr)
+		{
+			window.draw(obj);
+		}*/
+		for (sf::CircleShape c : circleArr)
+			window.draw(c);
+		window.draw(sprite);
+		window.display();		//shows the fucking buffer
 	}
 
 	return 0;
