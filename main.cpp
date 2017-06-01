@@ -85,6 +85,7 @@ int main(int argc, char ** argv)
 	sf::IntRect rectSource(0, 0, 46, 46); //left, top, width, height
 	texture.loadFromFile("Sprites/idle.png");
 	sf::Sprite sprite(texture);
+	sprite.setScale(3, 3);
 	//sprite.setTextureRect(rectSource);
 	
 	//int x, y;
@@ -126,8 +127,8 @@ int main(int argc, char ** argv)
 		}
 
 		//DRAW SHIT!!
-		window.clear();			//clears the buffer
-		window.draw(circle);	//puts object on the buffer
+		window.clear(sf::Color::Cyan); //clears the buffer (also added background color)
+		window.draw(circle); //puts object on the buffer
 		/*for (auto& obj : circleArr)
 		{
 			window.draw(obj);
