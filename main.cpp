@@ -1,19 +1,13 @@
-//@author: Matt Kataryniak
+/**
+ * @author Matt Kataryniak
+ */
 #include <SFML\graphics.hpp>
 #include <stdlib.h>
 #include <vector>
 #include <time.h>
 
 #define SECONDS_PER_FRAME 16
-
-/**
- * @brief The game class
- */
-class Game
-{
-	sf::RenderWindow *w; /**< The render window */
-};
-
+#define MAX_FRAMES_PER_ANIMATION 11
 
 /**
  * @brief This takes input and that's about it
@@ -41,6 +35,16 @@ void DrawShit()
 {
 
 }
+
+/**
+ * @brief Creates something that can be animated
+ */
+struct Animation
+{
+	int count; //number of frames
+	sf::IntRect frames[MAX_FRAMES_PER_ANIMATION]; //Where frames are located
+	int times[MAX_FRAMES_PER_ANIMATION]; //timing
+};
 
 /**
  * @brief The the heart of operations
@@ -79,19 +83,29 @@ int main(int argc, char ** argv)
 	}
 
 
-	// Loading assets
+	// Loading assets, this is all initilzation
 	sf::Clock clock;
 	sf::Texture texture;
 	sf::IntRect rectSource(0, 0, 46, 46); //left, top, width, height
 	texture.loadFromFile("Sprites/idle.png");
 	sf::Sprite sprite(texture);
+	Animation animation;
 	sprite.setScale(3, 3);
 	//sprite.setTextureRect(rectSource);
 	
 	//int x, y;
-	int frame = 0;
-	int frameTimer = 100;
+	animation.count = 11;
+	for (int i = 0; i < 11; i++)
+	{
+		animation.frames[i] = rectSource;
+		animation.times[i] = 100;
+		rectSource.left += 46;
+	}
 	//x = y = 0;
+	int frame = 0;
+	int frameTimer = animation.times[0];
+	FILE * file;
+	file = fopen ("output.txt","w");
 
 	//the game loop
 	while (window.isOpen())
@@ -136,7 +150,7 @@ int main(int argc, char ** argv)
 		for (sf::CircleShape c : circleArr)
 			window.draw(c);
 		window.draw(sprite);
-		window.display();		//shows the fucking buffer
+		window.display(); //shows the fucking buffer
 
 		//Clock shit, pretty much a deltaTime
 		if (clock.getElapsedTime().asMilliseconds() < SECONDS_PER_FRAME)
@@ -145,15 +159,20 @@ int main(int argc, char ** argv)
 		}
 
 		frameTimer -= clock.getElapsedTime().asMilliseconds();
+		fprintf(file, "FrameTimer: %d\n", frameTimer);
 		if (frameTimer <= 0)
 		{
+			fprintf(file, "Passed test!\n");
 			frame = (frame + 1) % 11;
-			frameTimer = 100;
+			//frameTimer = 100;
+			frameTimer = animation.times[frame];
 		}
-		rectSource.left = frame * 46;
-		sprite.setTextureRect(rectSource);
+		//rectSource.left = frame * 46;
+		//sprite.setTextureRect(rectSource);
+		sprite.setTextureRect(animation.frames[frame]);
 		clock.restart();
 	}
 
+	fclose(file);
 	return 0;
 }

@@ -8,4 +8,12 @@ If you don't follow it and look for a job, you could piss people off
 Will be expected to know the rules and conform to them
 
 SFML requires that if you want to use debug mode, you need to use the debug libraries
+
+6/7/2017
+---------------------------
+Things required for animation:
+Sprite position, sprite sequence, number of frames, frame rate
+struct:	can be directly copied
+		can be openly assessable from the outside
+		much faster to set up
 */
