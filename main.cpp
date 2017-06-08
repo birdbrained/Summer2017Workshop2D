@@ -17,6 +17,7 @@
 void Input()
 {
 	sf::Event myEvent;
+	
 }
 
 /**
@@ -136,6 +137,26 @@ int main(int argc, char ** argv)
 					printf("F was pressed, also, fugg' off.\n");
 					//1. When you hold down a key, it is considered pressed until you release it
 					//2. 1st half second you press and hold a key, it doesn't count (STICKY KEYSSS!!!!)
+				}
+				else if (myEvent.key.code == sf::Keyboard::W)
+				{
+					printf("W was pressed, also, some insult that starts with W!\n");
+					sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y - 5);
+				}
+				else if (myEvent.key.code == sf::Keyboard::A)
+				{
+					printf("A was pressed, also, some insult that starts with A!\n");
+					sprite.setPosition(sprite.getPosition().x - 5, sprite.getPosition().y);
+				}
+				else if (myEvent.key.code == sf::Keyboard::S)
+				{
+					printf("S was pressed, also, some insult that starts with S!\n");
+					sprite.setPosition(sprite.getPosition().x, sprite.getPosition().y + 5);
+				}
+				else if (myEvent.key.code == sf::Keyboard::D)
+				{
+					printf("D was pressed, also, some insult that starts with D!\n");
+					sprite.setPosition(sprite.getPosition().x + 5, sprite.getPosition().y);
 				}
 				break;
 			case sf::Event::Closed:
