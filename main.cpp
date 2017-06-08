@@ -5,9 +5,10 @@
 #include <stdlib.h>
 #include <vector>
 #include <time.h>
+#include "SummerWorkshop2D\Animation.h"
 
 #define SECONDS_PER_FRAME 16
-#define MAX_FRAMES_PER_ANIMATION 11
+//#define MAX_FRAMES_PER_ANIMATION 11
 
 /**
  * @brief This takes input and that's about it
@@ -36,15 +37,15 @@ void DrawShit()
 
 }
 
-/**
+/*
  * @brief Creates something that can be animated
- */
-struct Animation
+ *
+/*struct Animation
 {
 	int count; //number of frames
 	sf::IntRect frames[MAX_FRAMES_PER_ANIMATION]; //Where frames are located
 	int times[MAX_FRAMES_PER_ANIMATION]; //timing
-};
+};*/
 
 /**
  * @brief The the heart of operations
@@ -95,6 +96,11 @@ int main(int argc, char ** argv)
 	
 	//int x, y;
 	animation.count = 11;
+	if (animation.count > MAX_FRAMES_PER_ANIMATION)
+	{
+		animation.count = MAX_FRAMES_PER_ANIMATION;
+		printf("Animation frame count is greater than MAX_FRAMES_PER_ANIMATION, lowering variable count to MAX_FRAMES_PER_ANIMATION\n");
+	}
 	for (int i = 0; i < 11; i++)
 	{
 		animation.frames[i] = rectSource;
@@ -105,7 +111,7 @@ int main(int argc, char ** argv)
 	int frame = 0;
 	int frameTimer = animation.times[0];
 	FILE * file;
-	file = fopen ("output.txt","w");
+	file = fopen("output.txt","w");
 
 	//the game loop
 	while (window.isOpen())
