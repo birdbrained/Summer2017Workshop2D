@@ -5,6 +5,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SummerWorkshop2D", "SummerW
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F4D05B8E-B010-4501-AA80-9CDE0DB02D1F}"
 	ProjectSection(SolutionItems) = preProject
+		SummerWorkshop2D\Collision.cpp = SummerWorkshop2D\Collision.cpp
 		main.cpp = main.cpp
 	EndProjectSection
 EndProject

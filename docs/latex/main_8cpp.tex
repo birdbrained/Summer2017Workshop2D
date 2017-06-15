@@ -5,6 +5,7 @@
 {\ttfamily \#include $<$vector$>$}\newline
 {\ttfamily \#include $<$time.\+h$>$}\newline
 {\ttfamily \#include \char`\"{}Summer\+Workshop2\+D\textbackslash{}\+Animation.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Summer\+Workshop2\+D\textbackslash{}\+Collision.\+h\char`\"{}}\newline
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
@@ -13,10 +14,6 @@
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{main_8cpp_aeece29bc461fb24dde217b2b137c863f}{Point\+In\+A\+A\+BB} (sf\+::\+Vector2f t, sf\+::\+Float\+Rect A)
-\begin{DoxyCompactList}\small\item\em Takes a Vector2f point and checks to see if it is inside of the Float\+Rect. \end{DoxyCompactList}\item 
-int \hyperlink{main_8cpp_af446aa23609297d29b78d07c5f4c213f}{A\+A\+B\+Bin\+A\+A\+BB} (sf\+::\+Float\+Rect A, sf\+::\+Float\+Rect B)
-\begin{DoxyCompactList}\small\item\em Checks to see if two Float\+Rects have collided with each other. \end{DoxyCompactList}\item 
 void \hyperlink{main_8cpp_a811b7cf72f3317200595c3a353431608}{Input} ()
 \begin{DoxyCompactList}\small\item\em This takes input and that\textquotesingle{}s about it. \end{DoxyCompactList}\item 
 void \hyperlink{main_8cpp_aec0783b5a136e042adcc47bae4fe5291}{Update} ()
@@ -40,26 +37,6 @@ Matt Kataryniak
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{main_8cpp_af446aa23609297d29b78d07c5f4c213f}\label{main_8cpp_af446aa23609297d29b78d07c5f4c213f}} 
-\index{main.\+cpp@{main.\+cpp}!A\+A\+B\+Bin\+A\+A\+BB@{A\+A\+B\+Bin\+A\+A\+BB}}
-\index{A\+A\+B\+Bin\+A\+A\+BB@{A\+A\+B\+Bin\+A\+A\+BB}!main.\+cpp@{main.\+cpp}}
-\subsubsection{\texorpdfstring{A\+A\+B\+Bin\+A\+A\+B\+B()}{AABBinAABB()}}
-{\footnotesize\ttfamily int A\+A\+B\+Bin\+A\+A\+BB (\begin{DoxyParamCaption}\item[{sf\+::\+Float\+Rect}]{A,  }\item[{sf\+::\+Float\+Rect}]{B }\end{DoxyParamCaption})}
-
-
-
-Checks to see if two Float\+Rects have collided with each other. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em A} & The first Float\+Rect \\
-\hline
-{\em B} & The second Float\+Rect \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-1 if Float\+Rects are colliding, 0 if they are not 
-\end{DoxyReturn}
 \mbox{\Hypertarget{main_8cpp_a2fc8720d089408eea6ff617be7149b44}\label{main_8cpp_a2fc8720d089408eea6ff617be7149b44}} 
 \index{main.\+cpp@{main.\+cpp}!Draw\+Shit@{Draw\+Shit}}
 \index{Draw\+Shit@{Draw\+Shit}!main.\+cpp@{main.\+cpp}}
@@ -105,26 +82,6 @@ The the heart of operations.
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
 0 if good, 1 if error 
-\end{DoxyReturn}
-\mbox{\Hypertarget{main_8cpp_aeece29bc461fb24dde217b2b137c863f}\label{main_8cpp_aeece29bc461fb24dde217b2b137c863f}} 
-\index{main.\+cpp@{main.\+cpp}!Point\+In\+A\+A\+BB@{Point\+In\+A\+A\+BB}}
-\index{Point\+In\+A\+A\+BB@{Point\+In\+A\+A\+BB}!main.\+cpp@{main.\+cpp}}
-\subsubsection{\texorpdfstring{Point\+In\+A\+A\+B\+B()}{PointInAABB()}}
-{\footnotesize\ttfamily int Point\+In\+A\+A\+BB (\begin{DoxyParamCaption}\item[{sf\+::\+Vector2f}]{t,  }\item[{sf\+::\+Float\+Rect}]{A }\end{DoxyParamCaption})}
-
-
-
-Takes a Vector2f point and checks to see if it is inside of the Float\+Rect. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em t} & The point to test \\
-\hline
-{\em A} & The Float\+Rect to test \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-1 if point is inside Float\+Rect, 0 if the point is not 
 \end{DoxyReturn}
 \mbox{\Hypertarget{main_8cpp_aec0783b5a136e042adcc47bae4fe5291}\label{main_8cpp_aec0783b5a136e042adcc47bae4fe5291}} 
 \index{main.\+cpp@{main.\+cpp}!Update@{Update}}
