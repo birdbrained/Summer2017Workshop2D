@@ -72,7 +72,7 @@ $(function() {
 <code>#include &lt;stdlib.h&gt;</code><br />
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;time.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="_animation_8h_source.html">SummerWorkshop2D\Animation.h</a>&quot;</code><br />
+<code>#include &quot;SummerWorkshop2D\Animation.h&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="define-members"></a>
 Macros</h2></td></tr>
@@ -81,6 +81,12 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:aeece29bc461fb24dde217b2b137c863f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#aeece29bc461fb24dde217b2b137c863f">PointInAABB</a> (sf::Vector2f t, sf::FloatRect A)</td></tr>
+<tr class="memdesc:aeece29bc461fb24dde217b2b137c863f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Takes a Vector2f point and checks to see if it is inside of the FloatRect.  <a href="#aeece29bc461fb24dde217b2b137c863f">More...</a><br /></td></tr>
+<tr class="separator:aeece29bc461fb24dde217b2b137c863f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af446aa23609297d29b78d07c5f4c213f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#af446aa23609297d29b78d07c5f4c213f">AABBinAABB</a> (sf::FloatRect A, sf::FloatRect B)</td></tr>
+<tr class="memdesc:af446aa23609297d29b78d07c5f4c213f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks to see if two FloatRects have collided with each other.  <a href="#af446aa23609297d29b78d07c5f4c213f">More...</a><br /></td></tr>
+<tr class="separator:af446aa23609297d29b78d07c5f4c213f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a811b7cf72f3317200595c3a353431608"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8cpp.html#a811b7cf72f3317200595c3a353431608">Input</a> ()</td></tr>
 <tr class="memdesc:a811b7cf72f3317200595c3a353431608"><td class="mdescLeft">&#160;</td><td class="mdescRight">This takes input and that's about it.  <a href="#a811b7cf72f3317200595c3a353431608">More...</a><br /></td></tr>
 <tr class="separator:a811b7cf72f3317200595c3a353431608"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -111,6 +117,44 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="af446aa23609297d29b78d07c5f4c213f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af446aa23609297d29b78d07c5f4c213f">&#9670;&nbsp;</a></span>AABBinAABB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int AABBinAABB </td>
+          <td>(</td>
+          <td class="paramtype">sf::FloatRect&#160;</td>
+          <td class="paramname"><em>A</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::FloatRect&#160;</td>
+          <td class="paramname"><em>B</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks to see if two FloatRects have collided with each other. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">A</td><td>The first FloatRect </td></tr>
+    <tr><td class="paramname">B</td><td>The second FloatRect </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if FloatRects are colliding, 0 if they are not </dd></dl>
+
+</div>
+</div>
 <a id="a2fc8720d089408eea6ff617be7149b44"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2fc8720d089408eea6ff617be7149b44">&#9670;&nbsp;</a></span>DrawShit()</h2>
 
@@ -186,6 +230,44 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>0 if good, 1 if error </dd></dl>
+
+</div>
+</div>
+<a id="aeece29bc461fb24dde217b2b137c863f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeece29bc461fb24dde217b2b137c863f">&#9670;&nbsp;</a></span>PointInAABB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int PointInAABB </td>
+          <td>(</td>
+          <td class="paramtype">sf::Vector2f&#160;</td>
+          <td class="paramname"><em>t</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">sf::FloatRect&#160;</td>
+          <td class="paramname"><em>A</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Takes a Vector2f point and checks to see if it is inside of the FloatRect. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">t</td><td>The point to test </td></tr>
+    <tr><td class="paramname">A</td><td>The FloatRect to test </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>1 if point is inside FloatRect, 0 if the point is not </dd></dl>
 
 </div>
 </div>
