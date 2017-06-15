@@ -34,14 +34,21 @@ int PointInAABB(sf::Vector2f t, sf::FloatRect A)
 int AABBinAABB(sf::FloatRect A, sf::FloatRect B)
 {
 	if (!PointInAABB(sf::Vector2f(A.left, A.top), B))
-		if (!PointInAABB(sf::Vector2f(A.left + A.width, A.top), B))
-			if (!PointInAABB(sf::Vector2f(A.left, A.top + A.height), B))
-				if(!PointInAABB(sf::Vector2f(A.left + A.width, A.top + A.height), B))
-					if (!PointInAABB(sf::Vector2f(B.left, B.top), A))
-						if (!PointInAABB(sf::Vector2f(B.left + B.width, B.top), A))
-							if(!PointInAABB(sf::Vector2f(B.left, B.top + B.height), A))
-								if (!PointInAABB(sf::Vector2f(B.left + B.width, B.top + B.height), A))
-									return 0;
+		return 0;
+	if (!PointInAABB(sf::Vector2f(A.left + A.width, A.top), B))
+		return 0;
+	if (!PointInAABB(sf::Vector2f(A.left, A.top + A.height), B))
+		return 0;
+	if(!PointInAABB(sf::Vector2f(A.left + A.width, A.top + A.height), B))
+		return 0;
+	if (!PointInAABB(sf::Vector2f(B.left, B.top), A))
+		return 0;
+	if (!PointInAABB(sf::Vector2f(B.left + B.width, B.top), A))
+		return 0;
+	if(!PointInAABB(sf::Vector2f(B.left, B.top + B.height), A))
+		return 0;
+	if (!PointInAABB(sf::Vector2f(B.left + B.width, B.top + B.height), A))
+		return 0;
 	return 1;
 
 }
