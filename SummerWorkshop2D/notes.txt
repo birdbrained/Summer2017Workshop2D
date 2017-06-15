@@ -16,4 +16,8 @@ Sprite position, sprite sequence, number of frames, frame rate
 struct:	can be directly copied
 		can be openly assessable from the outside
 		much faster to set up
+
+6/14/2017
+---------------------------
+
 */

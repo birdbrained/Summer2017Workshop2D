@@ -6,9 +6,41 @@
 #include <vector>
 #include <time.h>
 #include "SummerWorkshop2D\Animation.h"
+//#include "SummerWorkshop2D\Collision.cpp"
 
 #define SECONDS_PER_FRAME 16
 //#define MAX_FRAMES_PER_ANIMATION 11
+
+
+int PointInAABB(sf::Vector2f t, sf::FloatRect A)
+{
+	if (t.x >= A.left && t.x <= A.left + A.width && t.y >= A.top && t.y <= A.top + A.height)
+		return 1;
+	return 0;
+}
+
+int AABBinAABB(sf::FloatRect A, sf::FloatRect B)
+{
+	if (!PointInAABB(sf::Vector2f(A.left, A.top), B))
+		if (!PointInAABB(sf::Vector2f(A.left + A.width, A.top), B))
+			if (!PointInAABB(sf::Vector2f(A.left, A.top + A.height), B))
+				if(!PointInAABB(sf::Vector2f(A.left + A.width, A.top + A.height), B))
+					if (!PointInAABB(sf::Vector2f(B.left, B.top), A))
+						if (!PointInAABB(sf::Vector2f(B.left + B.width, B.top), A))
+							if(!PointInAABB(sf::Vector2f(B.left, B.top + B.height), A))
+								if (!PointInAABB(sf::Vector2f(B.left + B.width, B.top + B.height), A))
+									return 0;
+	return 1;
+
+}
+
+/*int PointInAABB(sf::Vector2f t, sf::Sprite A)
+{
+	if (t.x >= A.getPosition().x && t.x <= A.getPosition().x + A.getTextureRect().width
+		&& t.y >= A.getPosition().y && t.y <= A.getPosition().y + A.getTextureRect().height)
+		return 1;
+	return 0;
+}*?
 
 /**
  * @brief This takes input and that's about it
@@ -35,7 +67,7 @@ void Update()
  */
 void DrawShit()
 {
-
+	
 }
 
 /*
@@ -62,6 +94,10 @@ int main(int argc, char ** argv)
 	sf::CircleShape circle(100);
 	circle.setFillColor(sf::Color::Green);
 	circle.setPosition(30, 50);
+
+	sf::CircleShape point(5);
+	point.setFillColor(sf::Color::Black);
+	point.setPosition(500, 10);
 
 	//seeds the random number based on the current system time
 	srand(time(NULL));
@@ -94,6 +130,13 @@ int main(int argc, char ** argv)
 	Animation animation;
 	sprite.setScale(3, 3);
 	//sprite.setTextureRect(rectSource);
+
+	sf::Texture texture2;
+	sf::IntRect rectSource2(00, 0, 46, 46);
+	texture2.loadFromFile("Sprites/Dead2.png");
+	sf::Sprite sprite2(texture2);
+	sprite2.setScale(3, 3);
+	sprite2.setPosition(600.0f, 0.0f);
 	
 	//int x, y;
 	animation.count = 11;
@@ -113,6 +156,13 @@ int main(int argc, char ** argv)
 	int frameTimer = animation.times[0];
 	FILE * file;
 	file = fopen("output.txt","w");
+
+	sf::Vector2f myVect;
+	myVect.x = 500;
+	myVect.y = 1;
+
+	//Collision?
+	bool collide = false;
 
 	//the game loop
 	while (window.isOpen())
@@ -170,6 +220,7 @@ int main(int argc, char ** argv)
 		//DRAW SHIT!!
 		window.clear(sf::Color::Cyan); //clears the buffer (also added background color)
 		window.draw(circle); //puts object on the buffer
+		window.draw(point);
 		/*for (auto& obj : circleArr)
 		{
 			window.draw(obj);
@@ -177,6 +228,7 @@ int main(int argc, char ** argv)
 		for (sf::CircleShape c : circleArr)
 			window.draw(c);
 		window.draw(sprite);
+		window.draw(sprite2);
 		window.display(); //shows the fucking buffer
 
 		//Clock shit, pretty much a deltaTime
@@ -198,6 +250,24 @@ int main(int argc, char ** argv)
 		//sprite.setTextureRect(rectSource);
 		sprite.setTextureRect(animation.frames[frame]);
 		clock.restart();
+
+		//Move the two sprites towards each other. So what if it's bad, meeeeyhh.
+		if (!collide)
+		{
+			sprite.setPosition(sprite.getPosition().x + 5.0f, sprite.getPosition().y);
+			sprite2.setPosition(sprite2.getPosition().x - 5.0f, sprite2.getPosition().y);
+		}
+
+		//Test a point... lets say 500, 100 (declared above)
+		//printf("sprite x: %d\n", sprite.getPosition().x);
+		if (PointInAABB(myVect, sprite.getGlobalBounds()))
+			printf("Hit the point!\n");
+
+		//Ok, now test to see if the two sprites have collided with each other
+		if (AABBinAABB(sprite.getGlobalBounds(), sprite2.getGlobalBounds()))
+			collide = true;
+		else
+			collide = false;
 	}
 
 	fclose(file);
