@@ -17,7 +17,7 @@ struct:	can be directly copied
 		can be openly assessable from the outside
 		much faster to set up
 
-6/14/2017
+7/5/2017
 ---------------------------
-
+Abstract Data Types: Their model cannot be seen in memory, ex: Linked List
 */

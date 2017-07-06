@@ -7,6 +7,7 @@
 #include <time.h>
 #include "SummerWorkshop2D\Animation.h"
 #include "SummerWorkshop2D\Collision.h"
+#include "SummerWorkshop2D\TileMap.h"
 
 #define SECONDS_PER_FRAME 16
 //#define MAX_FRAMES_PER_ANIMATION 11
@@ -66,7 +67,9 @@ void DrawShit()
 int main(int argc, char ** argv)
 {
 	//create the actual window
-	sf::RenderWindow window(sf::VideoMode(800, 600), "da fuck"); //sf::Style::Fullscreen
+	//sf::RenderWindow window(sf::VideoMode(800, 600), "da fuck"); //sf::Style::Fullscreen
+	sf::RenderWindow window(sf::VideoMode(512, 256), "da fuckle");
+	
 	//create a circle object
 	sf::CircleShape circle(100);
 	circle.setFillColor(sf::Color::Green);
@@ -141,7 +144,41 @@ int main(int argc, char ** argv)
 	//Collision?
 	bool collide = false;
 
-	//the game loop
+	//------Vertex arrays------
+	//This creates an array with three vertexes, each has a position and a color; this one uses triangles
+	sf::VertexArray triangle(sf::Triangles, 3);
+	triangle[0].position = sf::Vector2f(10, 10);
+	triangle[1].position = sf::Vector2f(100, 10);
+	triangle[2].position = sf::Vector2f(100, 100);
+	triangle[0].color = sf::Color::Red;
+	triangle[1].color = sf::Color::Blue;
+	triangle[2].color = sf::Color::Green;
+
+	// -------TileMaps---------
+	// Define the level with an array of tile indices
+	const int level[] =
+	{
+		0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 2, 0, 0, 0, 0,
+        1, 1, 0, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3, 3, 3, 3,
+        0, 1, 0, 0, 2, 0, 3, 3, 3, 0, 1, 1, 1, 0, 0, 0,
+        0, 1, 1, 0, 3, 3, 3, 0, 0, 0, 1, 1, 1, 2, 0, 0,
+        0, 0, 1, 0, 3, 0, 2, 2, 0, 0, 1, 1, 1, 1, 2, 0,
+        2, 0, 1, 0, 3, 0, 2, 2, 2, 0, 1, 1, 1, 1, 1, 1,
+        0, 0, 1, 0, 3, 2, 2, 2, 0, 0, 0, 0, 1, 1, 1, 1,
+	};
+
+	// Create the TileMap from the level definition
+	TileMap map;
+	if (!map.load("Sprites/Tiles/tilesheet.png", sf::Vector2u(32, 32), level, 16, 8))
+		return -1;
+
+
+
+	// =====================
+	//    The game loop
+	// =====================
+
 	while (window.isOpen())
 	{
 		// ***DO NOT LOAD ASSETS IN THE WHILE LOOP!!!!!!!!!***
@@ -206,6 +243,11 @@ int main(int argc, char ** argv)
 			window.draw(c);
 		window.draw(sprite);
 		window.draw(sprite2);
+		window.draw(triangle);
+
+		// Draw the tilemap
+		window.draw(map);
+
 		window.display(); //shows the fucking buffer
 
 		//Clock shit, pretty much a deltaTime
