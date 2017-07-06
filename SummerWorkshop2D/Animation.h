@@ -8,7 +8,7 @@
 #define MAX_FRAMES_PER_ANIMATION 11
 
 /**
- * @brief This is an animation structure
+ * @brief An image that has at most MAX_FRAMES_PER_ANIMATION frames, played at SECONDS_PER_FRAME
  */
 struct Animation
 {

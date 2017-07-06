@@ -9,6 +9,9 @@
 #include "SummerWorkshop2D\Collision.h"
 #include "SummerWorkshop2D\TileMap.h"
 
+/**
+ * @brief The number of milliseconds per frame of animation
+ */
 #define SECONDS_PER_FRAME 16
 //#define MAX_FRAMES_PER_ANIMATION 11
 

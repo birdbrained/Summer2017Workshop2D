@@ -56,11 +56,11 @@ bool TileMap::load(const std::string& tileset, sf::Vector2u tileSize, const int*
 }
 
 /**
-	* @brief This will draw the completed TileMap
-	* @param target The...
-	* @param states The...
-	* @return NULL
-	*/
+ * @brief This will draw the completed TileMap
+ * @param target The...
+ * @param states The...
+ * @return NULL
+ */
 void TileMap::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
 	//Apply the transform

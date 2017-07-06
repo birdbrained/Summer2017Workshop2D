@@ -2,6 +2,9 @@
 
 #include <SFML\graphics.hpp>
 
+/**
+ * @brief Consists of a VertexArray of tiles, and a Texture the TileMap is constructed from
+ */
 class TileMap : public sf::Drawable, public sf::Transformable
 {
 public:
